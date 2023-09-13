@@ -46,6 +46,13 @@ create_table_query = f"""
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3;
 """
 cursor.execute(create_table_query)
+# sql query for checking the table availability
+check_table_query=f"SHOW TABLES LIKE '{counter_table_name}'"
+# execute the query
+cursor.execute(check_table_query)
+result=cursor.fetchone()
+if result:
+    print(f"The table '{counter_table_name}' is exists in the '{database_name}' database.")
 
 # close the cursor and database connection
 cursor.close()
